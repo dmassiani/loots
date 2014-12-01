@@ -4,4 +4,7 @@ Loots is a WordPress starter theme forked on root theme based on [HTML5 Boilerpl
 
 ## Getting started
 ## What's include
-## Next
+## Roadmap
+
+### Templates
+### Gulp 
