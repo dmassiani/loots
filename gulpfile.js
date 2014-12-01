@@ -5,10 +5,10 @@
 */
 
 // Project configuration
-var project     = 'poots', // Optional - Use your own project name here...
+var project     = 'loots', // Optional - Use your own project name here...
 	build       = './build/', // Files that you want to package into a zip go here
 	source      = './assets/', 	// Your main project assets and naming 'source' instead of 'src' to avoid confusion with gulp.src
-	bower       = './bower_components/'; // Not truly using this yet, more or less playing right now. TO-DO Place in Dev branch
+	bower       = './bower/'; // Not truly using this yet, more or less playing right now. TO-DO Place in Dev branch
 
 // Load plugins
 var gulp = require('gulp'),
