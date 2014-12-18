@@ -4,6 +4,7 @@ node_modules
 assets/vendor/*
 asset_manifest.json
 assets/js/production-*.js
+.sass-cache
 
 # rename this archive from gulpfile.js
 loots.zip
