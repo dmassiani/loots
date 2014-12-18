@@ -6,7 +6,8 @@ Loots is a WordPress starter theme forked on root theme based on [HTML5 Boilerpl
 - Clone this repo in your themes folder
 - cd loots (or renamed theme folder)
 - npm install
-- npm start
+- gulp build (needed manifest json)
+- gulp ( to start )
 
 ## What's include
 - Bourbon
