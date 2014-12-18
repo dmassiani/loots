@@ -23,16 +23,16 @@ function roots_scripts() {
     $assets = array(
       'css'       => '/assets/css/style.css',
       'js'        => '/assets/js/production.js',
-      // 'modernizr' => '/assets/vendor/modernizr/modernizr.js',
+      'modernizr' => '/assets/vendor/modernizr/modernizr.js',
       'jquery'    => '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js'
     );
   } else {
-    $get_assets = file_get_contents(get_template_directory() . '/assets/manifest.json');
-    $assets     = json_decode($get_assets, true);
+    $get_assets = file_get_contents(get_template_directory() . '/asset_manifest.json');
+    $jsonassets     = json_decode($get_assets);
     $assets     = array(
-      'css'       => '/assets/css/style.min.css?' . $assets['assets/css/main.min.css']['hash'],
-      'js'        => '/assets/js/production.min.js?' . $assets['assets/js/production.min.js']['hash'],
-      // 'modernizr' => '/assets/js/vendor/modernizr.min.js',
+      'css'       => '/assets/css/' . $jsonassets->app_styles[0],
+      'js'        => '/assets/js/' . $jsonassets->app_scripts[0],
+      'modernizr' => '/assets/js/vendor/modernizr.min.js',
       'jquery'    => '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'
     );
   }

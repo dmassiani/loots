@@ -5,7 +5,7 @@
 */
 
 // Project configuration
-var project     = 'loots', // Optional - Use your own project name here...
+var project     = 'box', // Optional - Use your own project name here...
 	build       = './build/', // Files that you want to package into a zip go here
 	source      = './assets/', 	// Your main project assets and naming 'source' instead of 'src' to avoid confusion with gulp.src
 	bower       = './bower/'; // Not truly using this yet, more or less playing right now. TO-DO Place in Dev branch
@@ -16,6 +16,8 @@ var gulp = require('gulp'),
 	reload      = browserSync.reload,
 	autoprefixer = require('gulp-autoprefixer'), // Autoprefixing magic
 	minifycss = require('gulp-minify-css'),
+	assetManifest = require('gulp-asset-manifest'),
+	rev = require('gulp-rev'),
 	jshint = require('gulp-jshint'),
 	uglify = require('gulp-uglify'),
 	imagemin = require('gulp-imagemin'),
@@ -46,7 +48,7 @@ gulp.task('browser-sync', function() {
 	];
 
 	browserSync.init(files, {
-	    proxy: project+".dev"
+	    proxy: project+".local"
 	});
 
 });
@@ -68,6 +70,8 @@ gulp.task('styles', function () {
 		.pipe(rename({ suffix: '.min' }))
 		.pipe(minifycss({keepBreaks:true}))
 		.pipe(minifycss({ keepSpecialComments: 0 }))
+		.pipe(rev())
+		.pipe(assetManifest({bundleName: 'app_styles'}))
 		.pipe(gulp.dest(source+'css'))
 		.pipe(reload({stream:true})) // Inject Styles when min style file is created
 		.pipe(notify({ message: 'Styles task complete', onLast: true }))
@@ -84,9 +88,11 @@ gulp.task('js', function() {
 		// .pipe(jshint('.jshintrc')) // TO-DO: Reporting seems to be broken for js errors.
 		// .pipe(jshint.reporter('default'))
 		.pipe(concat('production.js'))
+		.pipe(rev())
 		.pipe(gulp.dest(source+'js'))
-		.pipe(rename({ suffix: '.min' }))
+		// .pipe(rename({ suffix: '.min' }))
 		.pipe(uglify())
+		.pipe(assetManifest({bundleName: 'app_scripts'}))
 		.pipe(gulp.dest(build+'assets/js/'))
 		.pipe(notify({ message: 'Scripts task complete', onLast: true }));
 });

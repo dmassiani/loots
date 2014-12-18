@@ -2,7 +2,9 @@
 # Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
 node_modules
 assets/vendor/*
-assets/manifest.json
+asset_manifest.json
+assets/js/production-*.js
 
 # rename this archive from gulpfile.js
 loots.zip
+box.zip
